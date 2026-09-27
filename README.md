@@ -21,7 +21,7 @@ Vite prints a local address, usually `http://localhost:5173`. Open that in a bro
 
 ## Your map screenshots
 
-The pictures in `public/maps/` are placeholders, not in-game maps. Replace them with your own screenshots of the tactical map:
+The pictures for Bakurani and Zestafona in `public/maps/` are placeholders, not in-game maps. Ozeti is already your tactical screenshot, cropped to the terrain and aligned so the kilometer lines match the numbers printed on that shot. Replace the others with your own screenshots of the tactical map:
 
 | Map | File |
 | --- | --- |
@@ -40,7 +40,7 @@ Each map can use any screenshot size.
 3. Click a second point far away, diagonally if you can, and type that X and Y.
 4. The page saves scale and offset for that map in this browser.
 
-Until you calibrate, the image is stretched across the full tactical sheet used by the reference calculator (about X -0.03 to 163.81 and Y -0.01 to 163.83). North is up. A larger game X is to the right. A larger game Y is toward the top.
+Until you calibrate, Bakurani and Zestafona are stretched across the full tactical sheet used by the reference calculator (about X -0.03 to 163.81 and Y -0.01 to 163.83). Ozeti is already fitted to the screenshot in this repo. North is up. A larger game X is to the right. A larger game Y is toward the top.
 
 ## Coordinates
 
@@ -54,7 +54,7 @@ The paste box accepts:
 
 Very large pairs such as `8364 7285` are treated as raw meters and divided by 100.
 
-The numbers on the in-game tactical map are kilometer lines, not a 1–16 count from the left edge of the picture. Line 7 is game X 70 (7 km). Square `7-10` is the 1 km box east of line 7 and north of line 10: X 70–80, Y 100–110. Ozeti in this repo is already aligned to a supplied tactical screenshot. Bakurani and Zestafona are still placeholders until you add your own shots and calibrate. Toggle the 1 km grid, and the 100 m grid when you are zoomed in. Click the map to drop the active pin (Me, Objective, Base, waypoint, or a named pin). Drag a pin to nudge it.
+The numbers on the in-game tactical map are kilometer lines, not a 1–16 count from the left edge of the picture. Line 7 is game X 70 (7 km). Square `7-10` is the 1 km box east of line 7 and north of line 10: X 70–80, Y 100–110. On Ozeti, Manticore sits just west of line 7 and just south of line 9, Lonestar is between lines 8 and 9 near line 3, and Valkyra is just west of line 14 near line 7. Bakurani and Zestafona stay on the full sheet until you add your own shots and calibrate. Toggle the 1 km grid, and the 100 m grid when you are zoomed in. Click the map to drop the active pin (Me, Objective, Base, waypoint, or a named pin). Drag a pin to nudge it.
 
 The big number is the straight line from Me to the objective: degrees, compass point, meters, and the squares crossed. Waypoints bend the route and list each leg. Routes you name are saved per map in `localStorage`.
 

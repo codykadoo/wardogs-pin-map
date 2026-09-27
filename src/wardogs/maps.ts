@@ -25,11 +25,12 @@ export const MAPS: GameMap[] = [
   {
     id: "ozeti",
     name: "Ozeti",
-    image: "/maps/ozeti.png?v=2",
+    image: "/maps/ozeti.png?v=3",
     tileBounds: { minX: -0.03, maxX: 163.81, minY: -0.01, maxY: 163.83 },
-    // Crop of the supplied Ozeti tactical screenshot. Grid line N sits at
-    // coordinate N×10, matched to the numbers printed beside that screenshot.
-    imageBounds: { minX: 55.06, maxX: 148.48, minY: 13.04, maxY: 106.46 },
+    // Terrain crop of the supplied Ozeti tactical screenshot, with the black
+    // frame removed. Grid line N sits at coordinate N×10, matched to the
+    // kilometer numbers printed beside that screenshot.
+    imageBounds: { minX: 59.12, maxX: 143.0, minY: 22.56, maxY: 99.08 },
   },
   {
     id: "zestafona",
