@@ -1,10 +1,11 @@
-Coordinate conversion adapted from wardogs-calculator
+Coordinate convention adapted from wardogs-calculator
 https://github.com/apollyon-sys/wardogs-calculator
 Copyright (c) 2026 Apollyon
 
-This project reuses only the coordinate math (meters-per-unit, world distance,
-and compass bearing). It does not include, download, hotlink, or mirror that
-project's map images, tiles, markers, or other assets.
+Wardogs Pin Map uses that project's documented scale (1 coordinate unit = 100
+meters) when reading a Mark Coordinates paste, and the same north-clockwise
+bearing. It does not include, download, hotlink, or mirror that project's map
+images, tiles, markers, ballistic tables, or other assets.
 
 MIT License
 

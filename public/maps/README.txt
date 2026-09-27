@@ -4,8 +4,8 @@ Put your own WARDOGS tactical-map screenshots here:
   public/maps/ozeti.png
   public/maps/zestafona.png
 
-Ozeti is the supplied tactical screenshot, cropped to the terrain and aligned
-so kilometer line N is game coordinate N×10. Bakurani and Zestafona are
-placeholders, not in-game maps. Do not download or copy map images from
-other sites. After replacing a file, open that map and use Calibrate if the
-grid does not line up.
+Bakurani and Zestafona in this folder are placeholders. Ozeti is a tactical
+screenshot. Until you calibrate, every image is stretched across a 16 km by
+16 km frame. Do not download or copy map images from other sites. After
+replacing a file, restart the dev server if the old picture is cached, then
+open Calibrate.
