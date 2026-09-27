@@ -55,7 +55,7 @@ export function WardogsApp() {
 
   const game = getMap(state.mapId);
   const session = state.byMap[state.mapId];
-  const bounds = session.calibration ?? game.tileBounds;
+  const bounds = session.calibration ?? game.imageBounds ?? game.tileBounds;
 
   const sizeMismatch = Boolean(
     session.calibration &&
@@ -638,9 +638,8 @@ export function WardogsApp() {
           </section>
 
           <p className="wd-note">
-            Manual pins only. This page does not read the game, its files, or the screen. 1 km squares are
-            numbered 1–16 from coordinate 0: column left to right, row bottom to top. 7-10 is the center of
-            that square.
+            Manual pins only. This page does not read the game. Grid numbers match the tactical map:
+            line 7 is 7 km. Square 7-10 is the box east of line 7 and north of line 10.
           </p>
         </aside>
       </div>

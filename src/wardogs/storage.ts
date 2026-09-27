@@ -36,7 +36,7 @@ export type AppState = {
   byMap: Record<MapId, MapSession>;
 };
 
-const KEY = "wardogs-pin-map.v1";
+const KEY = "wardogs-pin-map.v2";
 
 export function emptySession(): MapSession {
   return {
@@ -55,7 +55,7 @@ export function defaultState(): AppState {
   for (const map of MAPS) byMap[map.id] = emptySession();
   return {
     version: 1,
-    mapId: "bakurani",
+    mapId: "ozeti",
     compact: false,
     showGrid: true,
     showSubgrid: false,

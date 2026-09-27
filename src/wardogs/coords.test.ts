@@ -34,23 +34,24 @@ test("parses mark coordinates, pairs, meters, and grid refs", () => {
   assert.deepEqual(parseCoordinateInput("X: 23.5 Y: 40"), { x: 23.5, y: 40 });
   assert.deepEqual(parseCoordinateInput("83,64 72,85"), { x: 83.64, y: 72.85 });
   assert.deepEqual(parseCoordinateInput("8364 7285"), { x: 83.64, y: 72.85 });
-  assert.deepEqual(parseCoordinateInput("7-10"), { x: 65, y: 95 });
-  assert.equal(parseCoordinateInput("0-1"), null);
+  assert.deepEqual(parseCoordinateInput("7-10"), { x: 75, y: 105 });
+  assert.deepEqual(parseCoordinateInput("0-1"), { x: 5, y: 15 });
+  assert.equal(parseCoordinateInput("16-1"), null);
   assert.equal(parseCoordinateInput("nope"), null);
 });
 
 test("grid squares and traversal", () => {
-  assert.deepEqual(gridCellAt(65, 95), { col: 7, row: 10 });
-  assert.deepEqual(gridCellAt(0, 0), { col: 1, row: 1 });
+  assert.deepEqual(gridCellAt(65, 95), { col: 6, row: 9 });
+  assert.deepEqual(gridCellAt(70, 100), { col: 7, row: 10 });
   assert.deepEqual(squaresCrossed(5, 5, 25, 5), [
-    { col: 1, row: 1 },
-    { col: 2, row: 1 },
-    { col: 3, row: 1 },
+    { col: 0, row: 0 },
+    { col: 1, row: 0 },
+    { col: 2, row: 0 },
   ]);
   const leg = measureLeg({ name: "Me", x: 5, y: 5 }, { name: "Objective", x: 15, y: 5 });
   assert.equal(leg.meters, 1000);
   assert.equal(leg.compass, "E");
-  assert.equal(leg.squares, "1-1 → 2-1");
+  assert.equal(leg.squares, "0-0 → 1-0");
 });
 
 test("two-point calibration matches a north-up image", () => {

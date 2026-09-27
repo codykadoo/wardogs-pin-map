@@ -228,7 +228,7 @@ export function TacticalMap(props: Props) {
             [0, x],
             [MAP_UNITS, x],
           ],
-          { color: "#d2ae62", weight: 1, opacity: 0.55, interactive: false },
+          { color: "#e7d7a8", weight: 1.25, opacity: 0.7, interactive: false },
         ).addTo(group);
       }
       for (let index = 0; index <= GRID_ROWS; index += 1) {
@@ -238,30 +238,41 @@ export function TacticalMap(props: Props) {
             [y, 0],
             [y, MAP_UNITS],
           ],
-          { color: "#d2ae62", weight: 1, opacity: 0.55, interactive: false },
+          { color: "#e7d7a8", weight: 1.25, opacity: 0.7, interactive: false },
         ).addTo(group);
       }
-      for (let col = 1; col <= GRID_COLUMNS; col += 1) {
-        L.marker([1.4, (col - 0.5) * UNITS_PER_KM], {
+      const view = map.getBounds();
+      const south = view.getSouth();
+      const north = view.getNorth();
+      const west = view.getWest();
+      const east = view.getEast();
+      const yLabel = south + (north - south) * 0.035;
+      const xLabel = west + (east - west) * 0.028;
+      for (let index = 0; index <= GRID_COLUMNS; index += 1) {
+        const x = index * UNITS_PER_KM;
+        if (x < west || x > east) continue;
+        L.marker([yLabel, x], {
           interactive: false,
           keyboard: false,
           icon: L.divIcon({
             className: "grid-label",
-            html: String(col),
-            iconSize: [28, 16],
-            iconAnchor: [14, 8],
+            html: String(index),
+            iconSize: [28, 18],
+            iconAnchor: [14, 9],
           }),
         }).addTo(group);
       }
-      for (let row = 1; row <= GRID_ROWS; row += 1) {
-        L.marker([(row - 0.5) * UNITS_PER_KM, 1.6], {
+      for (let index = 0; index <= GRID_ROWS; index += 1) {
+        const y = index * UNITS_PER_KM;
+        if (y < south || y > north) continue;
+        L.marker([y, xLabel], {
           interactive: false,
           keyboard: false,
           icon: L.divIcon({
             className: "grid-label",
-            html: String(row),
-            iconSize: [28, 16],
-            iconAnchor: [14, 8],
+            html: String(index),
+            iconSize: [28, 18],
+            iconAnchor: [14, 9],
           }),
         }).addTo(group);
       }

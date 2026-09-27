@@ -50,11 +50,11 @@ The paste box accepts:
 
 - A Mark Coordinates paste, for example `x100.05, y109.14`
 - Two numbers, typed in the paste box or in the X and Y fields
-- A grid reference like `7-10` (column-row). That drops the pin in the center of the square.
+- A grid reference like `7-10` (column-row). That drops the pin in the center of that square.
 
 Very large pairs such as `8364 7285` are treated as raw meters and divided by 100.
 
-Each map is a 16 × 16 km sheet. Columns 1–16 run left to right and rows 1–16 run bottom to top, starting at coordinate 0. Square `7-10` covers X 60–70 and Y 90–100. Toggle the 1 km grid, and the 100 m grid when you are zoomed in. Click the map to drop the active pin (Me, Objective, Base, waypoint, or a named pin). Drag a pin to nudge it.
+The numbers on the in-game tactical map are kilometer lines, not a 1–16 count from the left edge of the picture. Line 7 is game X 70 (7 km). Square `7-10` is the 1 km box east of line 7 and north of line 10: X 70–80, Y 100–110. Ozeti in this repo is already aligned to a supplied tactical screenshot. Bakurani and Zestafona are still placeholders until you add your own shots and calibrate. Toggle the 1 km grid, and the 100 m grid when you are zoomed in. Click the map to drop the active pin (Me, Objective, Base, waypoint, or a named pin). Drag a pin to nudge it.
 
 The big number is the straight line from Me to the objective: degrees, compass point, meters, and the squares crossed. Waypoints bend the route and list each leg. Routes you name are saved per map in `localStorage`.
 

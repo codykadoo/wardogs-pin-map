@@ -77,24 +77,24 @@ export function formatMeters(meters: number): string {
 
 export function gridCellAt(x: number, y: number): GridCell {
   return {
-    col: Math.floor(x / UNITS_PER_KM) + 1,
-    row: Math.floor(y / UNITS_PER_KM) + 1,
+    col: Math.floor(x / UNITS_PER_KM),
+    row: Math.floor(y / UNITS_PER_KM),
   };
 }
 
 export function inSheet(cell: GridCell): boolean {
-  return cell.col >= 1 && cell.col <= GRID_COLUMNS && cell.row >= 1 && cell.row <= GRID_ROWS;
+  return cell.col >= 0 && cell.col < GRID_COLUMNS && cell.row >= 0 && cell.row < GRID_ROWS;
 }
 
 export function formatGridCell(cell: GridCell): string {
   return `${cell.col}-${cell.row}`;
 }
 
-/** Center of a 1 km square. Column and row are 1–16. */
+/** Center of the 1 km square whose south-west corner is grid line (col, row). */
 export function gridCenter(col: number, row: number): XY {
   return {
-    x: (col - 0.5) * UNITS_PER_KM,
-    y: (row - 0.5) * UNITS_PER_KM,
+    x: (col + 0.5) * UNITS_PER_KM,
+    y: (row + 0.5) * UNITS_PER_KM,
   };
 }
 
@@ -108,7 +108,7 @@ export function squaresCrossed(x0: number, y0: number, x1: number, y1: number): 
   let cy = Math.floor(y0 / scale);
   const endX = Math.floor(x1 / scale);
   const endY = Math.floor(y1 / scale);
-  const cells: GridCell[] = [{ col: cx + 1, row: cy + 1 }];
+  const cells: GridCell[] = [{ col: cx, row: cy }];
   const dx = x1 - x0;
   const dy = y1 - y0;
   if (dx === 0 && dy === 0) return cells;
@@ -136,7 +136,7 @@ export function squaresCrossed(x0: number, y0: number, x1: number, y1: number): 
       cy += stepY;
       tMaxY += tDeltaY;
     }
-    cells.push({ col: cx + 1, row: cy + 1 });
+    cells.push({ col: cx, row: cy });
   }
   return cells;
 }
@@ -156,7 +156,8 @@ function parseNumber(raw: string): number {
 
 /**
  * Accepts a Mark Coordinates paste (`x100.05, y109.14`), a typed pair,
- * or a grid reference `7-10` (column-row, center of that 1 km square).
+ * or a grid reference `7-10` (column-row). That is the 1 km square east of
+ * line 7 and north of line 10, the same numbers printed on the tactical map.
  * Values that are clearly raw meters (both beyond the map unit range)
  * are divided by 100, matching storedMetersToWorldCoordinate.
  */
@@ -168,7 +169,7 @@ export function parseCoordinateInput(value: string): XY | null {
   if (grid) {
     const col = Number(grid[1]);
     const row = Number(grid[2]);
-    if (col < 1 || col > GRID_COLUMNS || row < 1 || row > GRID_ROWS) return null;
+    if (col < 0 || col >= GRID_COLUMNS || row < 0 || row >= GRID_ROWS) return null;
     return gridCenter(col, row);
   }
 
