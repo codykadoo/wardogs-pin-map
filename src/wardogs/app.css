@@ -1,0 +1,457 @@
+html,
+body,
+#root {
+  margin: 0;
+  background: #101410;
+}
+
+.wd-app {
+  --bg: #101410;
+  --surface: #181f1b;
+  --surface-2: #222b25;
+  --fg: #ebe6d6;
+  --muted: #93a094;
+  --line: #314038;
+  --brass: #d2ae62;
+  --brass-ink: #1c160b;
+  --me: #3d8bfd;
+  --obj: #e24b4b;
+  --base: #3cbf7a;
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  height: 100dvh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Barlow, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color-scheme: dark;
+}
+
+.wd-app * {
+  box-sizing: border-box;
+}
+
+.wd-app button,
+.wd-app input {
+  font: inherit;
+  color: inherit;
+}
+
+.wd-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.wd-brand {
+  display: flex;
+  flex-direction: column;
+  min-width: 148px;
+  margin-right: 4px;
+}
+
+.wd-kicker {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  color: var(--brass);
+  line-height: 1.1;
+}
+
+.wd-title {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.wd-maps,
+.wd-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.wd-tools {
+  margin-left: auto;
+}
+
+.wd-app button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.wd-app button:hover {
+  border-color: #4d6356;
+}
+
+.wd-app button[aria-pressed="true"],
+.wd-app button.is-on {
+  background: var(--brass);
+  color: var(--brass-ink);
+  border-color: var(--brass);
+}
+
+.wd-app button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.wd-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.wd-map-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  background: #0c100e;
+}
+
+.wd-map {
+  position: absolute;
+  inset: 0;
+}
+
+.wd-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #0c100e;
+  font-family: inherit;
+}
+
+.wd-map-wrap.placing .leaflet-container {
+  cursor: crosshair;
+}
+
+.wd-banner {
+  position: absolute;
+  z-index: 800;
+  left: 12px;
+  right: 12px;
+  top: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: rgba(16, 20, 16, 0.92);
+  border: 1px solid var(--brass);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.wd-cursor {
+  position: absolute;
+  z-index: 800;
+  left: 12px;
+  bottom: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(16, 20, 16, 0.88);
+  border: 1px solid var(--line);
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  letter-spacing: 0.04em;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.wd-panel {
+  width: 390px;
+  flex: none;
+  overflow: auto;
+  border-left: 1px solid var(--line);
+  background: var(--surface);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.wd-readout {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px 14px;
+}
+
+.wd-readout-label {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.wd-bearing-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.wd-bearing {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: clamp(64px, 9vw, 88px);
+  line-height: 0.9;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.wd-compass {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 42px;
+  color: var(--brass);
+  line-height: 1;
+}
+
+.wd-distance {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: clamp(36px, 5vw, 48px);
+  line-height: 1;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.wd-sub {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.wd-squares {
+  margin-top: 8px;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  color: var(--fg);
+}
+
+.wd-section h2 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.wd-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.wd-app input[type="text"],
+.wd-app input[type="number"] {
+  min-height: 44px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  padding: 0 12px;
+}
+
+.wd-app input:focus {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
+}
+
+.wd-xy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.wd-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.wd-modes button {
+  flex: 1;
+  min-width: 72px;
+}
+
+.wd-modes button[data-mode="me"][aria-pressed="true"] {
+  background: var(--me);
+  border-color: var(--me);
+  color: #041018;
+}
+
+.wd-modes button[data-mode="objective"][aria-pressed="true"] {
+  background: var(--obj);
+  border-color: var(--obj);
+  color: #1a0606;
+}
+
+.wd-modes button[data-mode="base"][aria-pressed="true"] {
+  background: var(--base);
+  border-color: var(--base);
+  color: #04140c;
+}
+
+.wd-error {
+  color: #ffb4a8;
+  font-size: 13px;
+  margin: 6px 0 0;
+}
+
+.wd-hint {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 6px 0 0;
+}
+
+.wd-pin-list,
+.wd-route-list,
+.wd-leg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wd-pin-list li,
+.wd-route-list li,
+.wd-leg-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.wd-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.wd-pin-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.wd-pin-main strong {
+  display: block;
+}
+
+.wd-pin-main span,
+.wd-leg-list span {
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.wd-icon-btn {
+  min-width: 44px;
+  padding: 0 8px;
+}
+
+.wd-note {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.wd-app.compact .wd-map-wrap,
+.wd-app.compact .wd-only-full,
+.wd-app.compact .wd-tools .wd-full-tool {
+  display: none;
+}
+
+.wd-app.compact .wd-body {
+  justify-content: center;
+}
+
+.wd-app.compact .wd-panel {
+  width: min(440px, 100%);
+  border-left: 0;
+  background: transparent;
+}
+
+.wd-app.compact .wd-bearing {
+  font-size: 112px;
+}
+
+.pin-icon {
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 2px solid #f4f1e8;
+  color: #081018;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.pin-me { background: var(--me); }
+.pin-objective { background: var(--obj); color: #fff; }
+.pin-base { background: var(--base); border-radius: 4px; }
+.pin-custom { background: #d2ae62; }
+.pin-way { background: #efe7d2; color: #1c160b; }
+.pin-ghost { background: transparent; border-style: dashed; color: var(--brass); }
+
+.leaflet-marker-icon.grid-label,
+.leaflet-marker-icon.pin-wrap {
+  background: none;
+  border: none;
+}
+
+.grid-label {
+  background: transparent;
+  border: 0;
+  color: #f3ead2;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 800px) {
+  .wd-tools { margin-left: 0; }
+  .wd-body { flex-direction: column; }
+  .wd-map-wrap { min-height: 48dvh; flex: none; height: 48dvh; }
+  .wd-panel {
+    width: 100%;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    flex: 1;
+  }
+  .wd-app.compact .wd-map-wrap { display: none; }
+  .wd-app.compact .wd-panel { border-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wd-app * {
+    transition: none !important;
+  }
+}
